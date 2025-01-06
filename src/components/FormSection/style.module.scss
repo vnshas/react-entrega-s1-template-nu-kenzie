@@ -1,0 +1,79 @@
+.FlexBox{
+    display: flex;
+}
+
+.Form{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    font-family: var(--font-secondary);
+    div{
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+    }
+    
+    input, select{
+        width: 19.625rem;
+        height: 3rem;
+        padding: 1rem;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+    }
+    select{
+        font-size: 0.75rem;
+        color: var(#343a40);
+    }
+    span{
+        color: #868e96;;
+    }
+    button{
+        height: 3rem;
+        background-color: var(--color-primary);
+        color: var(--color-grey1);
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 1rem;
+        margin-top: 1.625rem;
+    }
+}
+
+.List{
+    display: flex;
+    flex-direction: column;
+    gap: 29px;
+    margin-left: 1rem;
+    li{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        button{
+            background-color: var(--color-grey2);
+            height: 1.25rem;
+            border-radius: 2px;
+            font-size: 10px;
+        }
+}
+    
+}
+
+.TotalValue{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    div{
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+    p{
+        font-size: .875rem;
+    }
+
+}
