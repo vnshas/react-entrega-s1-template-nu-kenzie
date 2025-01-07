@@ -7,19 +7,25 @@ export const FormSection = () =>{
     
     const taskListData = []
     const [taskList, setTaskList] = useState(taskListData)
-
+  
 
     const [description, setDescription] = useState("")
     const [value, setValue] = useState(1)
-
+    
+    const [selectValue, setSelectValue] = useState("Entrada")
+    const selectList = [
+        {id:1 , name:"Entrada"},
+        {id:2, name:"Despesa"},
+    ]
+    
     const submit = (e) =>{
         e.preventDefault()
         
-        const task = {description,value, selectValue}
-        const newTask = {...task, id:crypto.randomUUID()}
-        const newTaskList = [...taskList,newTask]
-        console.log(newTaskList)
+        const task = {description,value, selectValue,id:crypto.randomUUID()}
+        const newTaskList = [...taskList,task]
         setTaskList(newTaskList)
+        
+
         setDescription("")
         setValue(1)
         setSelectValue("Entrada")
@@ -30,12 +36,15 @@ export const FormSection = () =>{
         setTaskList(newTaskList)
     }
     
+    const entrance = taskList.filter(task => task.selectValue === "Entrada")
+    const totalEntrance = entrance.reduce((a,v) => a = a + v.value, 0)
     
-    const [selectValue, setSelectValue] = useState("Entrada")
-    const selectList = [
-        {id:1 , name:"Entrada"},
-        {id:2, name:"Despesa"},
-    ]
+    const expense = taskList.filter(task => task.selectValue === "Despesa")
+    const totalExpense = expense.reduce((a,v) => a = a - v.value, 0)
+    
+    const totalValue = totalEntrance + totalExpense
+    
+    
     
     return (
       <section>
@@ -85,7 +94,7 @@ export const FormSection = () =>{
                     <h3 className="title">Valor total</h3>
                     <p className="paragraph">O valor se refere ao saldo</p>
                   </div>
-                  <h3 className="title">{taskList.reduce((a,v) => a = a + v.value, 0).toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</h3>
+                  <h3>{totalValue.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</h3>
                 </div>
               </div>
             </div>
@@ -94,7 +103,7 @@ export const FormSection = () =>{
               <ul className={styles.List}>
                 <h3 className="title">Resumo financeiro</h3>
                 {taskList.map((task, index) => (
-                    <li key={index}>
+                    <li key={index} className={task.selectValue === "Entrada" ? styles.entrance : styles.expense}>
                     <div>
                       <h3 className="title">{task.description}</h3>
                       <p className="paragraph">{task.selectValue}</p>
@@ -113,3 +122,4 @@ export const FormSection = () =>{
       </section>
     );
 }
+

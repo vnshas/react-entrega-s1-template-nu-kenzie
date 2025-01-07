@@ -41,26 +41,40 @@
 .List{
     display: flex;
     flex-direction: column;
-    gap: 29px;
+    gap: 1rem;
     margin-left: 1rem;
+   
     li{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 15px;
+        gap: 0.9375rem;
+        padding: 0.9rem;
         div {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 0.625rem;
+            
+            
         }
         button{
             background-color: var(--color-grey2);
             height: 1.25rem;
             border-radius: 2px;
-            font-size: 10px;
+            font-size: 0.625rem;
         }
 }
     
+}
+
+.entrance{
+    border-left: 4px solid var(--color-secondary);
+    border-radius: 4px;
+}
+
+.expense{
+    border-left: 4px solid var(--color-grey2);
+    border-radius: 4px;
 }
 
 .TotalValue{
@@ -76,4 +90,15 @@
         font-size: .875rem;
     }
 
+}
+
+@media (max-width:750px){
+    .FlexBox{
+        flex-direction: column;
+    }
+    .List{
+        li{
+            height: 9.75rem;
+        }
+    }
 }
