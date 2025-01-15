@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styles from "./style.module.scss"
-
+import { FormCard } from "./FormCard"
 
 
 export const FormSection = () =>{
@@ -88,13 +88,13 @@ export const FormSection = () =>{
                   <button type="submit">Inserir Valor</button>
                 </form>
               </div>
-              <div className="container sm">
+              <div>
                 <div className={`${styles.FlexBox} ${styles.TotalValue}`}>
                   <div>
                     <h3 className="title">Valor total</h3>
                     <p className="paragraph">O valor se refere ao saldo</p>
                   </div>
-                  <h3>{totalValue.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</h3>
+                  <h4 className="title">{totalValue.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</h4>
                 </div>
               </div>
             </div>
@@ -102,18 +102,7 @@ export const FormSection = () =>{
             <div className="container md">
               <ul className={styles.List}>
                 <h3 className="title">Resumo financeiro</h3>
-                {taskList.map((task, index) => (
-                    <li key={index} className={task.selectValue === "Entrada" ? styles.entrance : styles.expense}>
-                    <div>
-                      <h3 className="title">{task.description}</h3>
-                      <p className="paragraph">{task.selectValue}</p>
-                    </div>
-                    <div>
-                      <span className="paragraph">{task.value.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</span>
-                      <button onClick={() => removeTask(task.id)}>Excluir</button>
-                    </div>
-                  </li>
-                ))}
+                <FormCard taskList={taskList}  removeTask={removeTask} />
                 
               </ul>
             </div>
